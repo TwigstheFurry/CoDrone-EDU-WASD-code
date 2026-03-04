@@ -31,16 +31,16 @@ try: # drone movement
             pitch = -speed
             moving = True
         if keyboard.is_pressed('a'):
-            yaw = speed
+            roll = speed
             moving = True
         if keyboard.is_pressed('d'):
-            yaw = -speed
-            moving = True
-        if keyboard.is_pressed('q'):
             roll = -speed
             moving = True
+        if keyboard.is_pressed('q'):
+            yaw = -speed
+            moving = True
         if keyboard.is_pressed('e'):
-            roll = speed
+            yaw = speed
             moving = True
         if keyboard.is_pressed('r'):
             throttle = speed
