@@ -1,0 +1,21 @@
+READ BY INSTRUCTIONS.
+
+1. Download https://www.python.org/downloads/release/python-3143/
+
+2. Double tap the file, and install. Say yes for everything when you download the Python file. It will ask for your password, it's not a virus!
+
+3. Download Visual Studio code: https://code.visualstudio.com/download
+
+4. Once you download the file, open the exe and agree to everything.
+
+5. Once you have agreed, open the exe via your search bar on your Operating System.
+
+6. Open a terminal at the top left of VS IDE.
+
+7. Type python -m install codrone-edu
+
+8. It will ask you to download a newer version, from the C:, copy everything and paste into the terminal.
+
+9. Close and open VS.
+
+10. You're done!
