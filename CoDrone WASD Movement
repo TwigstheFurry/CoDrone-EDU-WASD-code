@@ -1,0 +1,86 @@
+from codrone_edu.drone import *
+import time
+
+# Safe keyboard import
+try:
+    import keyboard
+except Exception:
+    class _KeyboardStub:
+        def is_pressed(self, key):
+            return False
+    keyboard = _KeyboardStub()
+
+drone = Drone()
+drone.connect()
+drone.takeoff()
+
+speed = 50
+loop_delay = 0.05
+
+try: # drone movement
+    while True:
+        pitch = 0
+        roll = 0
+        yaw = 0
+        throttle = 0
+        moving = False
+        if keyboard.is_pressed('w'):
+            pitch = speed
+            moving = True
+        if keyboard.is_pressed('s'):
+            pitch = -speed
+            moving = True
+        if keyboard.is_pressed('a'):
+            yaw = speed
+            moving = True
+        if keyboard.is_pressed('d'):
+            yaw = -speed
+            moving = True
+        if keyboard.is_pressed('q'):
+            roll = -speed
+            moving = True
+        if keyboard.is_pressed('e'):
+            roll = speed
+            moving = True
+        if keyboard.is_pressed('r'):
+            throttle = speed
+            moving = True
+        if keyboard.is_pressed('f'):
+            throttle = -speed
+            moving = True
+
+        drone.set_pitch(pitch)
+        drone.set_roll(roll)
+        drone.set_yaw(yaw)
+        drone.set_throttle(throttle)
+        
+        drone.move(loop_delay)
+
+        if not moving:
+            drone.set_pitch(0)
+            drone.set_roll(0)
+            drone.set_yaw(0)
+            drone.set_throttle(0)
+            drone.move(loop_delay)
+
+
+        if keyboard.is_pressed('z'):
+            drone.land()
+            break
+
+        # Emergency stop
+        if keyboard.is_pressed('x'):
+            drone.emergency_stop()
+            break
+
+        if keyboard.is_pressed('k'):
+            speed += 10
+            print(speed)
+        elif keyboard.is_pressed('l'):
+            speed -= 10
+            print(speed)
+
+        # time.sleep(loop_delay)
+
+finally:
+    drone.disconnect()
